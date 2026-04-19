@@ -7,11 +7,7 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/12.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.12.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.12.0/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.12.0/firebase-storage-compat.js"></script>
-  <script src="firebase-config.js"></script>
+ 
   <style>
     :root {
       --bg1: #fef7f0;
@@ -758,8 +754,8 @@
   <div id="adminLoginModal" class="admin-login-modal">
     <div class="admin-login-card">
       <h2>Acceso Administrador</h2>
-      <p class="auth-note">Inicia sesión con el usuario de Firebase Auth autorizado para administrar productos.</p>
-      <input type="email" id="adminEmail" placeholder="Correo electrónico">
+      <p class="auth-note">Ingresa la contraseña de administrador para gestionar tus productos.</p>
+    
       <input type="password" id="adminPassword" placeholder="Contraseña">
       <button onclick="checkAdminLogin()">Ingresar</button>
       <div id="loginError" class="login-error"></div>
@@ -775,7 +771,7 @@
 
       <div class="admin-form">
         <h3 id="formTitle">Agregar Nuevo Producto</h3>
-        <input type="hidden" id="editProductId">
+        <input type="hidden" id="editProductId"
         <input type="text" id="productName" placeholder="Nombre del producto">
 
         <div class="admin-form-row">
@@ -801,126 +797,44 @@
   </div>
 
 <script>
-  const firebaseConfig = window.__FIREBASE_CONFIG__ || {};
-
-  const firebaseReady = Boolean(
-    firebaseConfig.apiKey &&
-    firebaseConfig.authDomain &&
-    firebaseConfig.databaseURL &&
-    firebaseConfig.projectId &&
-    firebaseConfig.storageBucket &&
-    firebaseConfig.messagingSenderId &&
-    firebaseConfig.appId
-  );
-
-  let app = null;
-  let auth = null;
-  let db = null;
-  let storage = null;
-
-  if (firebaseReady) {
-    try {
-      app = firebase.initializeApp(firebaseConfig);
-      auth = firebase.auth();
-      db = firebase.database();
-      storage = firebase.storage();
-      console.log("Firebase conectado correctamente");
-    } catch (error) {
-      console.error("No se pudo inicializar Firebase:", error);
-    }
-  } else {
-    console.warn("Firebase no está configurado. Completa la configuración de Firebase.");
-  }
-
-  function firebaseUnavailable(actionName) {
-    const message = actionName
-      ? `Firebase no está configurado. Completa la configuración antes de ${actionName}.`
-      : "Firebase no está configurado. Completa la configuración.";
-    console.warn(message);
-    return message;
-  }
-
-  function firebaseAuthErrorMessage(error) {
-    const readableError = {
-      "auth/invalid-email": "El correo no tiene un formato válido.",
-      "auth/user-disabled": "El usuario está deshabilitado.",
-      "auth/user-not-found": "No existe un usuario con ese correo en Firebase Auth.",
-      "auth/wrong-password": "La contraseña es incorrecta.",
-      "auth/invalid-credential": "El correo o la contraseña no son correctos.",
-      "auth/too-many-requests": "Demasiados intentos. Intenta nuevamente más tarde.",
-      "auth/operation-not-allowed": "Email/Password no está habilitado en Firebase Authentication.",
-      "auth/api-key-not-valid.-please-pass-a-valid-api-key.": "La API key de Firebase no es válida para este proyecto."
-    }[error.code];
-
-    return readableError || `No se pudo iniciar sesión (${error.code || "error desconocido"}).`;
-  }
-
   const WHATSAPP_NUMBER = "595992476093";
-  const PRODUCTS_CACHE_KEY = "innerGlowProductsCache";
+  const ADMIN_PASSWORD = "admin123";
 
   let currentProduct = { name: "", price: "", stock: 0 };
   let isConsultMode = false;
-  let currentImageFile = null;
-  let currentImagePreview = null;
-  let currentImageWasRemoved = false;
-  let currentEditId = null;
   let products = [];
   let adminTapCount = 0;
   let adminTapTimer = null;
-
-  const defaultProducts = [
-    {
-      id: 1,
-      name: "Serum Vitamina C",
-      price: "50.000 Gs",
-      stock: 15,
-      image: null,
-      description: "Ilumina, unifica y protege tu piel. Reduce manchas y aporta luminosidad intensa."
-    },
-    {
-      id: 2,
-      name: "Crema Hidratante",
-      price: "45.000 Gs",
-      stock: 8,
-      image: null,
-      description: "Hidratación profunda, textura sedosa. Ideal para todo tipo de piel."
-    },
-    {
-      id: 3,
-      name: "Exfoliante Facial",
-      price: "35.000 Gs",
-      stock: 12,
-      image: null,
-      description: "Elimina impurezas y células muertas. Renueva tu piel suavemente."
-    }
-  ];
+  let isAdminLoggedIn = false;
 
   function init() {
     setupNavigation();
     setupEventListeners();
-    setupAuthStateListener();
     setupAdminAccess();
-    startFirebaseSync();
     loadProducts();
   }
 
- function setupAuthStateListener() {
-  if (!auth) return;
+  async function loadProducts() {
+    try {
+      const response = await fetch("products.json");
 
-  auth.onAuthStateChanged((user) => {
-    const adminPanel = document.getElementById("adminPanel");
-    const adminLoginModal = document.getElementById("adminLoginModal");
+      if (!response.ok) {
+        throw new Error("No se pudo cargar products.json");
+      }
 
-    if (user) {
-      if (adminLoginModal) adminLoginModal.style.display = "none";
-      if (adminPanel) adminPanel.style.display = "none";
+      products = await response.json();
+
+      renderProductsOnPage();
       renderAdminProductList();
-      cancelEdit();
-    } else {
-      if (adminPanel) adminPanel.style.display = "none";
+    } catch (error) {
+      console.error("Error cargando productos:", error);
+
+      const container = document.getElementById("productsGrid");
+      if (container) {
+        container.innerHTML = "<p style='text-align:center; padding:40px;'>No se pudieron cargar los productos.</p>";
+      }
     }
-  });
-}
+  }
 
   function setupAdminAccess() {
     const logoHome = document.getElementById("logoHome");
@@ -936,9 +850,9 @@
 
         if (adminTapCount >= 5) {
           adminTapCount = 0;
-          if (auth && auth.currentUser) {
+
+          if (isAdminLoggedIn) {
             document.getElementById("adminPanel").style.display = "flex";
-            cancelEdit();
             renderAdminProductList();
           } else {
             openAdminLogin();
@@ -948,223 +862,32 @@
     }
 
     window.addEventListener("keydown", function (e) {
-      const adminShortcut = (e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a");
+      const adminShortcut =
+        (e.ctrlKey || e.metaKey) &&
+        e.shiftKey &&
+        (e.key === "A" || e.key === "a");
 
       if (!adminShortcut) return;
 
       e.preventDefault();
 
-      if (auth && auth.currentUser) {
+      if (isAdminLoggedIn) {
         document.getElementById("adminPanel").style.display = "flex";
-        cancelEdit();
         renderAdminProductList();
       } else {
         openAdminLogin();
       }
     });
 
-    const adminEmail = document.getElementById("adminEmail");
     const adminPassword = document.getElementById("adminPassword");
-
-    function submitAdminOnEnter(e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        checkAdminLogin();
-      }
-    }
-
-    if (adminEmail) adminEmail.addEventListener("keydown", submitAdminOnEnter);
-    if (adminPassword) adminPassword.addEventListener("keydown", submitAdminOnEnter);
-  }
-
-  function normalizeProducts(rawData) {
-    const list = Array.isArray(rawData) ? rawData : Object.values(rawData || {});
-    return list.map((p) => ({
-      id: Number(p && p.id) || 0,
-      name: p && p.name ? String(p.name) : "",
-      price: p && p.price ? String(p.price) : "",
-      stock: Number(p && p.stock) || 0,
-      image: p && p.image ? String(p.image) : null,
-      description: p && p.description ? String(p.description) : ""
-    })).sort((a, b) => a.id - b.id);
-  }
-
-  function mergeProducts(firebaseProducts, cachedProducts) {
-    const mergedById = new Map();
-
-    for (const product of firebaseProducts) {
-      mergedById.set(String(product.id), product);
-    }
-
-    for (const product of cachedProducts) {
-      mergedById.set(String(product.id), product);
-    }
-
-    return Array.from(mergedById.values()).sort((a, b) => a.id - b.id);
-  }
-
-  function loadProductsFromCacheOrDefaults() {
-    try {
-      const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        const normalized = normalizeProducts(parsed);
-        if (normalized.length > 0) return normalized;
-      }
-    } catch (error) {
-      console.warn("No se pudo leer la caché local de productos:", error);
-    }
-
-    return [...defaultProducts];
-  }
-
-  function saveProductsToCache(list) {
-    try {
-      localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(list));
-    } catch (error) {
-      console.warn("No se pudo guardar la caché local de productos:", error);
-    }
-  }
-
-  async function loadProducts() {
-    try {
-      if (!db) {
-        products = loadProductsFromCacheOrDefaults();
-        renderProductsOnPage();
-        if (document.getElementById("productsAdminList")) renderAdminProductList();
-        return;
-      }
-
-      await migrateLegacyProducts();
-      const snapshot = await db.ref("products").once("value");
-      const cachedProducts = loadProductsFromCacheOrDefaults();
-
-      if (snapshot.exists()) {
-        const firebaseProducts = normalizeProducts(snapshot.val());
-        products = mergeProducts(firebaseProducts, cachedProducts);
-        saveProductsToCache(products);
-
-        if (cachedProducts.length > firebaseProducts.length) {
-          await syncProductsToFirebase();
-        }
-      } else {
-        products = cachedProducts;
-        await syncProductsToFirebase();
-      }
-
-      renderProductsOnPage();
-      if (document.getElementById("productsAdminList")) renderAdminProductList();
-    } catch (error) {
-      console.error("Error cargando productos desde Firebase:", error);
-      products = loadProductsFromCacheOrDefaults();
-      renderProductsOnPage();
-      if (document.getElementById("productsAdminList")) renderAdminProductList();
-    }
-  }
-
-  async function migrateLegacyProducts() {
-    if (!db) return;
-
-    const migrationFlag = localStorage.getItem("innerGlowMigrationDone");
-    if (migrationFlag === "true") return;
-
-    const saved = localStorage.getItem("innerGlowProducts");
-    if (!saved) return;
-
-    try {
-      const legacyProducts = JSON.parse(saved);
-      if (!Array.isArray(legacyProducts) || legacyProducts.length === 0) return;
-
-      const migrated = [];
-      for (const product of legacyProducts) {
-        const migratedProduct = { ...product };
-        if (typeof migratedProduct.image === "string" && migratedProduct.image.startsWith("data:")) {
-          migratedProduct.image = await uploadDataUrlImage(migratedProduct.image, migratedProduct.id || Date.now());
-        }
-        migrated.push(migratedProduct);
-      }
-
-      products = normalizeProducts(migrated);
-      await db.ref("products").set(products);
-      saveProductsToCache(products);
-      localStorage.removeItem("innerGlowProducts");
-      localStorage.setItem("innerGlowMigrationDone", "true");
-      console.log("Migración completada desde localStorage hacia Firebase");
-    } catch (error) {
-      console.error("Error migrando productos antiguos:", error);
-    }
-  }
-
-  async function waitForAuthUser(timeoutMs = 6000) {
-    if (!auth) return null;
-    if (auth.currentUser) return auth.currentUser;
-
-    return new Promise((resolve) => {
-      const timer = setTimeout(() => {
-        unsubscribe();
-        resolve(auth.currentUser || null);
-      }, timeoutMs);
-
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-          clearTimeout(timer);
-          unsubscribe();
-          resolve(user);
+    if (adminPassword) {
+      adminPassword.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          checkAdminLogin();
         }
       });
-    });
-  }
-
-  async function syncProductsToFirebase() {
-    try {
-      if (!db) return;
-      const user = await waitForAuthUser();
-      if (!user) {
-        throw new Error("Debes iniciar sesión como administradora para guardar productos en Firebase.");
-      }
-
-      const payload = products.reduce((acc, product) => {
-        acc[String(product.id)] = product;
-        return acc;
-      }, {});
-
-      await db.ref("products").set(payload);
-      saveProductsToCache(products);
-      console.log("Firebase: productos guardados correctamente", products.length);
-    } catch (error) {
-      console.error("Error guardando en Firebase:", error);
-      saveProductsToCache(products);
-      throw error;
     }
-  }
-
-  function startFirebaseSync() {
-    if (!db) return;
-
-    const productsRef = db.ref("products");
-    console.log("Firebase: iniciando escucha de products");
-
-    productsRef.on("value", (snapshot) => {
-      if (snapshot.exists()) {
-        const firebaseData = snapshot.val();
-        console.log("Firebase: datos recibidos", firebaseData);
-
-        const firebaseProducts = normalizeProducts(firebaseData);
-        const cachedProducts = loadProductsFromCacheOrDefaults();
-        products = mergeProducts(firebaseProducts, cachedProducts);
-
-        saveProductsToCache(products);
-        renderProductsOnPage();
-        if (document.getElementById("productsAdminList")) renderAdminProductList();
-      } else {
-        console.log("Firebase: no hay productos en la base de datos aún");
-        products = loadProductsFromCacheOrDefaults();
-        renderProductsOnPage();
-        if (document.getElementById("productsAdminList")) renderAdminProductList();
-              }
-    }, (error) => {
-      console.error("Error leyendo productos de Firebase:", error);
-    });
   }
 
   function renderProductsOnPage() {
@@ -1213,203 +936,19 @@
           </div>
         </div>
         <div class="product-admin-actions">
-          <button class="edit-product-btn" onclick="editProduct(${p.id})">Editar</button>
-          <button class="delete-product-btn" onclick="deleteProduct(${p.id})">Eliminar</button>
+          <button class="edit-product-btn" onclick="viewProduct(${p.id})">Ver</button>
         </div>
       </div>
     `).join("");
   }
 
-  window.previewImage = function (event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-      alert("La imagen es muy grande. Máximo 5MB.");
-      event.target.value = "";
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      currentImageFile = file;
-      currentImagePreview = e.target.result;
-      currentImageWasRemoved = false;
-
-      const preview = document.getElementById("imagePreview");
-      const img = document.getElementById("previewImg");
-      if (preview && img) {
-        img.src = currentImagePreview;
-        preview.style.display = "block";
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  window.removeImage = function () {
-    currentImageFile = null;
-    currentImagePreview = null;
-    currentImageWasRemoved = true;
-
-    const fileInput = document.getElementById("productImageFile");
-    const preview = document.getElementById("imagePreview");
-    if (fileInput) fileInput.value = "";
-    if (preview) preview.style.display = "none";
-  };
-
-  async function uploadProductImage(file, productId) {
-    if (!storage) throw new Error(firebaseUnavailable("subir imágenes"));
-    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-    const imagePath = `products/${productId}/${Date.now()}-${safeName}`;
-    const imageRef = storage.ref().child(imagePath);
-    const snapshot = await imageRef.put(file);
-    return await snapshot.ref.getDownloadURL();
-  }
-
-  async function uploadDataUrlImage(dataUrl, productId) {
-    if (!storage) throw new Error(firebaseUnavailable("subir imágenes antiguas"));
-    const response = await fetch(dataUrl);
-    const blob = await response.blob();
-    const imagePath = `products/${productId}/${Date.now()}-legacy-image`;
-    const imageRef = storage.ref().child(imagePath);
-    const snapshot = await imageRef.put(blob);
-    return await snapshot.ref.getDownloadURL();
-  }
-
-  window.saveProduct = async function () {
-    try {
-      if (!db) {
-        alert(firebaseUnavailable("guardar productos"));
-        return;
-      }
-
-      const user = await waitForAuthUser();
-      if (!user) {
-        alert("Debes iniciar sesión como administradora para guardar productos.");
-        return;
-      }
-
-      const editId = document.getElementById("editProductId").value;
-      const name = document.getElementById("productName").value.trim();
-      const price = document.getElementById("productPrice").value.trim();
-      const stock = parseInt(document.getElementById("productStock").value);
-      const description = document.getElementById("productDescription").value.trim();
-
-      if (!name) { alert("Por favor, ingresa el nombre del producto"); return; }
-      if (!price) { alert("Por favor, ingresa el precio del producto"); return; }
-      if (isNaN(stock) || stock < 0) { alert("Por favor, ingresa un stock válido"); return; }
-      if (!description) { alert("Por favor, ingresa una descripción del producto"); return; }
-
-      let imageUrl = null;
-
-      if (editId) {
-        const index = products.findIndex(p => p.id == editId);
-        if (index !== -1) {
-          imageUrl = products[index].image || null;
-
-          if (currentImageWasRemoved) {
-            imageUrl = null;
-          } else if (currentImageFile) {
-            imageUrl = await uploadProductImage(currentImageFile, editId);
-          }
-
-          products[index] = {
-            ...products[index],
-            name,
-            price,
-            stock,
-            image: imageUrl,
-            description
-          };
-        }
-      } else {
-        const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-
-        if (currentImageFile) {
-          imageUrl = await uploadProductImage(currentImageFile, newId);
-        }
-
-        products.push({
-          id: newId,
-          name,
-          price,
-          stock,
-          image: imageUrl,
-          description
-        });
-      }
-
-      await syncProductsToFirebase();
-      renderProductsOnPage();
-      renderAdminProductList();
-      cancelEdit();
-      alert("Producto guardado exitosamente");
-    } catch (error) {
-      console.error("Error guardando producto:", error);
-      alert(error.message || "No se pudo guardar el producto. Revisa Firebase Storage y Database.");
-    }
-  };
-
-  window.editProduct = function (id) {
+  window.viewProduct = function (id) {
     const p = products.find(p => p.id === id);
     if (!p) return;
 
-    currentEditId = p.id;
-    document.getElementById("editProductId").value = p.id;
-    document.getElementById("productName").value = p.name;
-    document.getElementById("productPrice").value = p.price;
-    document.getElementById("productStock").value = p.stock;
-    document.getElementById("productDescription").value = p.description || "";
-    currentImageWasRemoved = false;
-    currentImageFile = null;
-
-    if (p.image) {
-      currentImagePreview = p.image;
-      const preview = document.getElementById("imagePreview");
-      const img = document.getElementById("previewImg");
-      if (preview && img) {
-        img.src = currentImagePreview;
-        preview.style.display = "block";
-      }
-    } else {
-      removeImage();
-    }
-
-    document.getElementById("formTitle").innerText = "Editar Producto";
-    document.querySelector(".admin-form").scrollIntoView({ behavior: "smooth" });
-  };
-
-  window.deleteProduct = async function (id) {
-    if (!confirm("¿Estás segura de que deseas eliminar este producto? Esta acción no se puede deshacer.")) return;
-
-    try {
-      products = products.filter(p => p.id !== id);
-      await syncProductsToFirebase();
-      renderProductsOnPage();
-      renderAdminProductList();
-
-      if (document.getElementById("editProductId").value == id) {
-        cancelEdit();
-      }
-
-      alert("Producto eliminado exitosamente");
-    } catch (error) {
-      console.error("Error eliminando producto:", error);
-      alert("No se pudo eliminar el producto.");
-    }
-  };
-
-  window.cancelEdit = function () {
-    document.getElementById("editProductId").value = "";
-    document.getElementById("productName").value = "";
-    document.getElementById("productPrice").value = "";
-    document.getElementById("productStock").value = "";
-    document.getElementById("productDescription").value = "";
-    document.getElementById("formTitle").innerText = "Agregar Nuevo Producto";
-    removeImage();
-    currentEditId = null;
-    currentImagePreview = null;
-    currentImageWasRemoved = false;
+    alert(
+      `Producto: ${p.name}\nPrecio: ${p.price}\nStock: ${p.stock}\nDescripción: ${p.description}\n\nPara cambiarlo, editá el archivo products.json y subilo a GitHub.`
+    );
   };
 
   window.openOrderModal = function (name, price, stock, isConsult) {
@@ -1424,6 +963,7 @@
 
     const form = document.getElementById("orderForm");
     form.reset();
+
     const quantity = document.getElementById("quantity");
     if (quantity) quantity.value = 1;
 
@@ -1445,16 +985,24 @@
       const address = document.getElementById("address").value.trim();
       const notes = document.getElementById("notes").value.trim();
 
-      if (!fullName) { alert("Por favor, ingresa tu nombre completo"); return; }
-      if (!phone) { alert("Por favor, ingresa tu número de teléfono"); return; }
+      if (!fullName) {
+        alert("Por favor, ingresa tu nombre completo");
+        return;
+      }
+
+      if (!phone) {
+        alert("Por favor, ingresa tu número de teléfono");
+        return;
+      }
+
       if (!isConsultMode && quantity > currentProduct.stock) {
         alert(`Stock insuficiente. Solo tenemos ${currentProduct.stock} unidades disponibles.`);
         return;
       }
 
       let priceNumber = 0;
-      const priceMatch = currentProduct.price.match(/(\d+(?:\.\d+)?)/);
-      if (priceMatch) priceNumber = parseInt(priceMatch[0].replace(/\./g, ""));
+      const cleanPrice = currentProduct.price.replace(/[^\d]/g, "");
+      if (cleanPrice) priceNumber = parseInt(cleanPrice);
 
       const subtotal = priceNumber * quantity;
 
@@ -1472,8 +1020,15 @@
     const phone = document.getElementById("contactPhone").value.trim();
     const msg = document.getElementById("contactMessage").value.trim();
 
-    if (!name) { alert("Por favor, ingresa tu nombre"); return; }
-    if (!phone) { alert("Por favor, ingresa tu número de teléfono"); return; }
+    if (!name) {
+      alert("Por favor, ingresa tu nombre");
+      return;
+    }
+
+    if (!phone) {
+      alert("Por favor, ingresa tu número de teléfono");
+      return;
+    }
 
     const message = `✨ Mensaje desde Inner Glow PY ✨\n\n👤 Nombre: ${name}\n📞 WhatsApp: ${phone}\n💬 Mensaje: ${msg || "Consulta sobre productos"}`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
@@ -1481,62 +1036,37 @@
 
   window.openAdminLogin = function () {
     document.getElementById("adminLoginModal").style.display = "flex";
-    document.getElementById("adminEmail").value = "";
+
+    const emailInput = document.getElementById("adminEmail");
+    if (emailInput) emailInput.value = "";
+
     document.getElementById("adminPassword").value = "";
     document.getElementById("loginError").style.display = "none";
   };
 
-  window.checkAdminLogin = async function () {
-    if (!auth) {
-      document.getElementById("loginError").innerText = firebaseUnavailable("iniciar sesión como administradora");
-      document.getElementById("loginError").style.display = "block";
-      return;
-    }
-
-    const email = document.getElementById("adminEmail").value.trim();
+  window.checkAdminLogin = function () {
     const pwd = document.getElementById("adminPassword").value;
+    const errorBox = document.getElementById("loginError");
 
-    if (!email) {
-      document.getElementById("loginError").innerText = "Ingresa tu correo de administradora";
-      document.getElementById("loginError").style.display = "block";
-      return;
-    }
-
-    if (!pwd) {
-      document.getElementById("loginError").innerText = "Ingresa tu contraseña";
-      document.getElementById("loginError").style.display = "block";
-      return;
-    }
-
-    try {
-      await auth.signInWithEmailAndPassword(email, pwd);
-      await waitForAuthUser();
-      document.getElementById("loginError").style.display = "none";
-    } catch (error) {
-      console.error("Error de inicio de sesión:", error);
-      document.getElementById("loginError").innerText = firebaseAuthErrorMessage(error);
-      document.getElementById("loginError").style.display = "block";
+    if (pwd === ADMIN_PASSWORD) {
+      isAdminLoggedIn = true;
+      document.getElementById("adminLoginModal").style.display = "none";
+      document.getElementById("adminPanel").style.display = "flex";
+      errorBox.style.display = "none";
+      renderAdminProductList();
+    } else {
+      errorBox.innerText = "Contraseña incorrecta";
+      errorBox.style.display = "block";
     }
   };
 
   window.closeAdminPanel = function () {
     document.getElementById("adminPanel").style.display = "none";
-    cancelEdit();
   };
 
   window.logoutAdmin = function () {
-    if (!auth) {
-      document.getElementById("adminPanel").style.display = "none";
-      cancelEdit();
-      return;
-    }
-
-    auth.signOut().catch((error) => {
-      console.error("Error cerrando sesión:", error);
-    });
-
+    isAdminLoggedIn = false;
     document.getElementById("adminPanel").style.display = "none";
-    cancelEdit();
   };
 
   function setupNavigation() {
@@ -1569,11 +1099,11 @@
 
   function setupEventListeners() {
     const instagramLink = document.getElementById("instagramLink");
-if (instagramLink) {
-  instagramLink.addEventListener("click", function () {
-    window.open("https://www.instagram.com/inner_glow_py/", "_blank");
-  });
-}
+    if (instagramLink) {
+      instagramLink.addEventListener("click", function () {
+        window.open("https://www.instagram.com/inner_glow_py/", "_blank");
+      });
+    }
 
     const adminModal = document.getElementById("adminLoginModal");
     if (adminModal) {
@@ -1599,12 +1129,9 @@ if (instagramLink) {
 
   function escapeHtml(text) {
     const div = document.createElement("div");
-    div.textContent = text;
+    div.textContent = text || "";
     return div.innerHTML;
   }
 
   init();
 </script>
-
-</body>
-</html>
