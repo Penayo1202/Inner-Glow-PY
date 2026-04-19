@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Labial Matte",
+    "price": "25.000 Gs",
+    "stock": 6,
+    "image": "img/labial-matte.jpg",
+    "description": "Color intenso, acabado matte y larga duración."
+  },
+  {
+    "id": 2,
+    "name": "Serum Vitamina C",
+    "price": "50.000 Gs",
+    "stock": 10,
+    "image": "img/serum-vitamina-c.jpg",
+    "description": "Ilumina y ayuda a unificar el tono de la piel."
+  }
+]
