@@ -135,14 +135,7 @@
     "image": "img/removedor-maquillaje.jpg",
     "description": "Toallitas desmaquillantes suaves,limpia y elimina el maquillaje delicadamente."
   },
-   {
-    "id": 18,
-    "name": "Delineador",
-    "price": "15.000 Gs",
-    "stock": 5,
-    "image": "img/delineador.jpg",
-    "description": "Delineador Liquido."
-  },
+  
    {
     "id": 19,
     "name": "Serum Wokali",
