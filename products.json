@@ -4,7 +4,7 @@
     "name": "Blush Contour",
     "price": "21.000 Gs",
     "stock": 3,
-    "image": "img/blushcontour.jpeg",
+    "image": "img/blushcontour.jpg",
     "description": "Paleta 3 en 1 Contorno, iluminador y blush."
   },
   {
@@ -12,7 +12,7 @@
     "name": "Blush Cremoso",
     "price": "23.000 Gs",
     "stock": 3,
-    "image": "img/blush-cremoso.jpeg",
+    "image": "img/blush-cremoso.jpg",
     "description": "Blush Cremoso en barra.Su textura suave se difumina fácilmente."
   },
    {
@@ -20,7 +20,7 @@
     "name": "Blush Líquido",
     "price": "21.000 Gs",
     "stock": 2,
-    "image": "img/blushliquido.jpeg",
+    "image": "img/blushliquido.jpg",
     "description": "Dale a tu piel ese toque fresco y saludable con este blush líquido."
   },
    {
@@ -28,7 +28,7 @@
     "name": "Delineador Líquido",
     "price": "12.000 Gs",
     "stock": 5,
-    "image": "img/delineadorliquido.jpeg",
+    "image": "img/delineadorliquido.jpg",
     "description": "Delineador con alta precisión con acabado matte intenso."
   },
    {
@@ -36,7 +36,7 @@
     "name": "Lip Chocolate D`Hermosa",
     "price": "14.000 Gs",
     "stock": 2,
-    "image": "img/D'Hermosa-Lip-chocolate.jpeg",
+    "image": "img/D'Hermosa-Lip-chocolate.jpg",
     "description": "Brillo Labial con acabado luminoso."
   },
    {
@@ -44,7 +44,7 @@
     "name": "Espejo Dorado+pinza ",
     "price": "25.000 Gs",
     "stock": 2,
-    "image": "img/espejitodorado.jpeg",
+    "image": "img/espejitodorado.jpg",
     "description": "kit dorado."
   },
    {
@@ -52,7 +52,7 @@
     "name": "Esponjitas",
     "price": "8.000 Gs",
     "stock": 5,
-    "image": "img/espomjitas-de-maquillaje.jpeg",
+    "image": "img/espomjitas-de-maquillaje.jpg",
     "description": "Esponjitas para maquillaje."
   },
    {
@@ -60,7 +60,7 @@
     "name": "Brochas",
     "price": "30.000 Gs",
     "stock": 1,
-    "image": "img/keli-brochas.jpeg",
+    "image": "img/keli-brochas.jpg",
     "description": "Set de Brochas 5 piezas."
   },
    {
@@ -68,7 +68,7 @@
     "name": "Labial Cremé Varios tonos",
     "price": "24.000 Gs",
     "stock": 2,
-    "image": "img/labialcremé.jpeg",
+    "image": "img/labialcremé.jpg",
     "description": "Labial Líquido RubbyRosse."
   },
    {
@@ -76,7 +76,7 @@
     "name": "Labial Lip Plum",
     "price": "13.000 Gs",
     "stock": 5,
-    "image": "img/labial-karité.jpeg",
+    "image": "img/labial-karité.jpg",
     "description": "Gloss voluminizador con efecto hidratante."
   },
    {
@@ -92,7 +92,7 @@
     "name": "Lápiz de Ojos",
     "price": "10.000 Gs",
     "stock": 2,
-    "image": "img/lapiz-.jpeg",
+    "image": "img/lapiz-.jpg",
     "description": "Delineador en Lápiz de fácil aplicación."
   },
    {
@@ -100,7 +100,7 @@
     "name": "Lápiz Labial",
     "price": "12.000 Gs",
     "stock": 4,
-    "image": "img/lapizlabial-d'hermosa.jpeg",
+    "image": "img/lapizlabial-d'hermosa.jpg",
     "description": "Delineador de Labios preciso y larga duración."
   },
    {
@@ -108,7 +108,7 @@
     "name": "Limpiador de Maquillaje",
     "price": "24.000 Gs",
     "stock": 5,
-    "image": "img/limpiador.jpeg",
+    "image": "img/limpiador.jpg",
     "description": "Desmaquillante en Agua."
   },
    {
@@ -116,7 +116,7 @@
     "name": "Lip Gloss Ushas",
     "price": 32.000 Gs",
     "stock": 1,
-    "image": "img/lipgloss-ushas.jpeg",
+    "image": "img/lipgloss-ushas.jpg",
     "description": "Lip Gloss 2 en 1 con acabado brillante."
   },
    {
@@ -124,7 +124,7 @@
     "name": "Pincel de Cejas",
     "price": "18.000 Gs",
     "stock": 2,
-    "image": "img/pincel-para-cejas.jpeg",
+    "image": "img/pincel-para-cejas.jpg",
     "description": "Delineador de cejas ,ideal para definir y rellenar con acabado natural y duradero."
   },
    {
@@ -132,7 +132,7 @@
     "name": "Removedor de Maquillaje",
     "price": "10.000 Gs",
     "stock": 2,
-    "image": "img/removedor-maquillaje.jpeg",
+    "image": "img/removedor-maquillaje.jpg",
     "description": "Toallitas desmaquillantes suaves,limpia y elimina el maquillaje delicadamente."
   },
    {
@@ -140,7 +140,7 @@
     "name": "Delineador",
     "price": "15.000 Gs",
     "stock": 5,
-    "image": "img/delineador.jpeg",
+    "image": "img/delineador.jpg",
     "description": "Delineador Liquido."
   },
    {
@@ -148,7 +148,7 @@
     "name": "Serum Wokali",
     "price": "35.000 Gs",
     "stock": 2,
-    "image": "img/serum-wokali.jpeg",
+    "image": "img/serum-wokali.jpg",
     "description": "Serum Facial con colágeno,hidrata,ilumina y ayuda a mejorar la firmeza de la piel.
   },
    {
@@ -156,7 +156,7 @@
     "name": "Aceite de Argán",
     "price": "35.000 Gs",
     "stock": 2,
-    "image": "img/kerasse.jpeg",
+    "image": "img/kerasse.jpg",
     "description": "Aporta Brillo,suavidad y controla el frizz."
   },
   {
@@ -164,7 +164,7 @@
     "name": "Parche para ojos",
     "price": "33.000 Gs",
     "stock": 2,
-    "image": "img/ushas.jpeg",
+    "image": "img/ushas.jpg",
     "description": "Hidrata, reduce las ojeras y deja la mirada fresca y revitali8zada."
   }
 ]
