@@ -60,7 +60,7 @@
     "name": "Brochas",
     "price": "30.000 Gs",
     "stock": 1,
-    "image": "img/keli-brochas.jpg",
+    "image": "img/kitdebrochas.jpg",
     "description": "Set de Brochas 5 piezas."
   },
    {
@@ -84,7 +84,7 @@
     "name": "Labial Matte",
     "price": "12.000 Gs",
     "stock": 2,
-    "image": "img/labial-matte.jpg",
+    "image": "img/labialmatte.jpg",
     "description": "Color intenso, acabado matte y larga duración."
   },
    {
@@ -166,5 +166,62 @@
     "stock": 2,
     "image": "img/ushas.jpg",
     "description": "Hidrata, reduce las ojeras y deja la mirada fresca y revitali8zada."
+  },
+  {
+    "id": 22,
+    "name": "set de esponjas de maquillaje",
+    "price": "12.000 Gs",
+    "stock": 2,
+    "image": "img/rubybasse.jpg",
+    "description": "Ideales para difuminar y lograr un acabado uniforme."
+  },
+  {
+    "id": 23,
+    "name": "Brochas",
+    "price": "14.000 Gs",
+    "stock": 2,
+    "image": "img/brochaspabibrow.jpg",
+    "description": "Set de brochas, todo en 1."
+  },
+  {
+    "id": 24,
+    "name": "Rimel Colossal",
+    "price": "15.000 Gs",
+    "stock": 2,
+    "image": "img/rimelcolossal.jpg",
+    "description": "Máscara de pestañas efecto volumen."
+  },
+  {
+    "id": 25,
+    "name": "Vincha + Muñequera ",
+    "price": "28.000 Gs",
+    "stock": 2,
+    "image": "img/binchas.jpg",
+    "description": "Set de vincha y muñequera para tu rutina de skincare."
+  },
+  {
+    "id": 26,
+    "name": "Vinchitas",
+    "price": "12.000 Gs",
+    "stock": 2,
+    "image": "img/binchitas.jpg",
+    "description": "Máscara de pestañas efecto volumen."
+  },
+  {
+    "id": 27,
+    "name": "Serum",
+    "price": "35.000 Gs",
+    "stock": 2,
+    "image": "img/serum.jpg",
+    "description": "Serum Facial ,ilunina y ayuda a reducir lineas de expresión."
+  },
+  {
+    "id": 28,
+    "name": "Delineador",
+    "price": "15.000 Gs",
+    "stock": 6,
+    "image": "img/rimel.jpg",
+    "description": "Color intenso y larga duración."
   }
+  
 ]
