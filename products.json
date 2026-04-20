@@ -114,7 +114,7 @@
    {
     "id": 15,
     "name": "Lip Gloss Ushas",
-    "price": 32.000 Gs",
+    "price": "32.000 Gs",
     "stock": 1,
     "image": "img/lipgloss-ushas.jpg",
     "description": "Lip Gloss 2 en 1 con acabado brillante."
@@ -149,7 +149,7 @@
     "price": "35.000 Gs",
     "stock": 2,
     "image": "img/serum-wokali.jpg",
-    "description": "Serum Facial con colágeno,hidrata,ilumina y ayuda a mejorar la firmeza de la piel.
+    "description": "Serum Facial con colágeno,hidrata,ilumina y ayuda a mejorar la firmeza de la piel."
   },
    {
     "id": 20,
