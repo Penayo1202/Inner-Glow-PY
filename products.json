@@ -311,5 +311,12 @@
     "stock":3 ,
     "image": "serumbioque.jpg",
     "description": "Hidratación Intensa que ayuda a reparar la barrera de la piel."
+  },
+  "id": 41,
+    "name": "Lip Labial",
+    "price": "14.000 Gs",
+    "stock":2,
+    "image": "dhermosa-Lip-chocolate1.jpg",
+    "description": "Brillo Labial."
   }
 ]
