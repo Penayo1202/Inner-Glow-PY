@@ -221,7 +221,7 @@
     "name": "Balsamo",
     "price": "12.000 Gs",
     "stock": 3,
-    "image": "balsamoorejita.jpg",
+    "image": "balsamoorejita1.jpg",
     "description": "Balsamo kiss,rosa."
   },
   {
@@ -237,7 +237,7 @@
     "name": "Cepillo Masajeador",
     "price": "22.000 Gs",
     "stock": 1,
-    "image": "beautymaster1.jpg",
+    "image": "beautymaster2.jpg",
     "description": "Limpia en profundidad y estimula la circulación."
   },
   {
@@ -245,7 +245,7 @@
     "name": "Lip Gloss",
     "price": "20.000 Gs",
     "stock": 3,
-    "image": "brillos.jpg",
+    "image": "brillos1.jpg",
     "description": "Brillo labial con efecto luminso y acabado gloss."
   },
   {
