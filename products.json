@@ -36,7 +36,7 @@
     "name": "Lip Chocolate D`Hermosa",
     "price": "14.000 Gs",
     "stock": 2,
-    "image": "img/D'Hermosa-Lip-chocolate1.jpg",
+    "image": "imgco/dhermosa-Lip-chocolate1.jpg",
     "description": "Brillo Labial con acabado luminoso."
   },
    {
@@ -213,7 +213,7 @@
     "name": "Delineador",
     "price": "15.000 Gs",
     "stock": 6,
-    "image": "delineadorclossal1.jpg",
+    "image": "img/delineadorclossal1.jpg",
     "description": "Color intenso y larga duración."
   },
    {
@@ -221,7 +221,7 @@
     "name": "Balsamo",
     "price": "12.000 Gs",
     "stock": 3,
-    "image": "balsamoorejita1.jpg",
+    "image": "img/balsamoorejita1.jpg",
     "description": "Balsamo kiss,rosa."
   },
   {
@@ -229,7 +229,7 @@
     "name": "Rubor",
     "price": "18.000 Gs",
     "stock": 3,
-    "image": "rubor.jpg",
+    "image": "img/rubor.jpg",
     "description": "Color cremoso 2 en 1 para labios y mejillas"
   },
   {
@@ -237,7 +237,7 @@
     "name": "Cepillo Masajeador",
     "price": "22.000 Gs",
     "stock": 1,
-    "image": "beautymaster2.jpg",
+    "image": "img/beautymaster2.jpg",
     "description": "Limpia en profundidad y estimula la circulación."
   },
   {
@@ -245,7 +245,7 @@
     "name": "Lip Gloss",
     "price": "20.000 Gs",
     "stock": 3,
-    "image": "brillos1.jpg",
+    "image": "img/brillos1.jpg",
     "description": "Brillo labial con efecto luminso y acabado gloss."
   },
   {
@@ -253,7 +253,7 @@
     "name": "Crema Facial Bioqua",
     "price": "25.000 Gs",
     "stock": 3,
-    "image": "cremarostro.jpg",
+    "image": "img/cremarostro.jpg",
     "description": "Ayuda a tonificar el tono de la piel,mejorar la textura y lograr un rostro más radiante."
   },
    {
@@ -261,7 +261,7 @@
     "name": "Máscara de Pestañas",
     "price": "15.000 Gs",
     "stock": 3,
-    "image": "máscara-pestaña1.jpg",
+    "image": "img/máscara-pestaña1.jpg",
     "description": "Alarga, define y aporta volúmen a las pestañas desde la primera aplicación."
   },
   {
@@ -269,7 +269,7 @@
     "name": "Perfume ONLYOU",
     "price": "40.000 Gs",
     "stock":1,
-    "image": "only813.jpg",
+    "image": "img/only813.jpg",
     "description": "Fragancia femenina con un aroma delicado y duradero."
   },
    {
@@ -277,7 +277,7 @@
     "name": "Perfume ONLYOU",
     "price": "40.000 Gs",
     "stock":1,
-    "image": "only8106.jpg",
+    "image": "img/only8106.jpg",
     "description": "Fragancia Intensa y sofisticada."
   },
   {
@@ -285,7 +285,7 @@
     "name": "Perfume ONLYOU",
     "price": "40.000 Gs",
     "stock":1 ,
-    "image": "onlydama.jpg",
+    "image": "img/onlydama.jpg",
     "description": "Fragancia femenina con aroma delicado."
   },
   {
@@ -293,7 +293,7 @@
     "name": "Paleta Dreamy Shadow",
     "price": "15.000 Gs",
     "stock":3 ,
-    "image": "paleta5en1.jpg",
+    "image": "img/paleta5en1.jpg",
     "description": "Paleta de sombra con tonos cálidos y versátiles."
   },
   {
@@ -301,7 +301,7 @@
     "name": "Serum Reborned Face",
     "price": "18.000 Gs",
     "stock":3 ,
-    "image": "serumreborned.jpg",
+    "image": "img/serumreborned.jpg",
     "description": "Serum Facial con ácido hialurónico y niacinamida que hidrata."
   },
   {
@@ -309,14 +309,7 @@
     "name": "Serum Ácido Hialurónico Bioqua",
     "price": "18.000 Gs",
     "stock":3 ,
-    "image": "serumbioque.jpg",
+    "image": "img/serumbioque.jpg",
     "description": "Hidratación Intensa que ayuda a reparar la barrera de la piel."
-  },
-  "id": 41,
-    "name": "Lip Labial",
-    "price": "14.000 Gs",
-    "stock":2,
-    "image": "dhermosa-Lip-chocolate1.jpg",
-    "description": "Brillo Labial."
   }
 ]
