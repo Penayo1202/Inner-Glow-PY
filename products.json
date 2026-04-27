@@ -4,7 +4,7 @@
     "name": "Blush Contour",
     "price": "21.000 Gs",
     "stock": 3,
-    "image": "img/blushcontour.jpg",
+    "image": "img/blushcontour1.jpg",
     "description": "Paleta 3 en 1 Contorno, iluminador y blush."
   },
   {
@@ -12,7 +12,7 @@
     "name": "Blush Cremoso",
     "price": "23.000 Gs",
     "stock": 3,
-    "image": "img/blush-cremoso.jpg",
+    "image": "img/blush-cremoso1.jpg",
     "description": "Blush Cremoso en barra.Su textura suave se difumina fácilmente."
   },
    {
@@ -20,7 +20,7 @@
     "name": "Blush Líquido",
     "price": "21.000 Gs",
     "stock": 2,
-    "image": "img/blushliquido.jpg",
+    "image": "img/blushliquido1.jpg",
     "description": "Dale a tu piel ese toque fresco y saludable con este blush líquido."
   },
    {
@@ -28,7 +28,7 @@
     "name": "Delineador Líquido",
     "price": "12.000 Gs",
     "stock": 5,
-    "image": "img/delineadorliquido.jpg",
+    "image": "img/delineadorliquido1.jpg",
     "description": "Delineador con alta precisión con acabado matte intenso."
   },
    {
@@ -44,7 +44,7 @@
     "name": "Espejo Dorado+pinza ",
     "price": "25.000 Gs",
     "stock": 2,
-    "image": "img/espejitodorado.jpg",
+    "image": "img/espejitodoradov1.jpg",
     "description": "kit dorado."
   },
    {
@@ -52,7 +52,7 @@
     "name": "Esponjitas",
     "price": "8.000 Gs",
     "stock": 5,
-    "image": "img/espomjitas-de-maquillaje.jpg",
+    "image": "img/espomjitas-de-maquillaje1.jpg",
     "description": "Esponjitas para maquillaje."
   },
    {
@@ -60,7 +60,7 @@
     "name": "Brochas",
     "price": "30.000 Gs",
     "stock": 1,
-    "image": "img/kitdebrochas.jpg",
+    "image": "img/keli-brochas.jpg",
     "description": "Set de Brochas 5 piezas."
   },
    {
@@ -68,7 +68,7 @@
     "name": "Labial Cremé Varios tonos",
     "price": "24.000 Gs",
     "stock": 2,
-    "image": "img/labialcremé.jpg",
+    "image": "img/labialcremé1.jpg",
     "description": "Labial Líquido RubbyRosse."
   },
    {
@@ -76,7 +76,7 @@
     "name": "Labial Lip Plum",
     "price": "13.000 Gs",
     "stock": 5,
-    "image": "img/labial-karité.jpg",
+    "image": "img/labial-karité1.jpg",
     "description": "Gloss voluminizador con efecto hidratante."
   },
    {
@@ -84,7 +84,7 @@
     "name": "Labial Matte",
     "price": "12.000 Gs",
     "stock": 2,
-    "image": "img/labialmatte.jpg",
+    "image": "img/labialmatte1.jpg",
     "description": "Color intenso, acabado matte y larga duración."
   },
    {
@@ -92,7 +92,7 @@
     "name": "Lápiz de Ojos",
     "price": "10.000 Gs",
     "stock": 2,
-    "image": "img/lapiz-.jpg",
+    "image": "img/lapiz-1.jpg",
     "description": "Delineador en Lápiz de fácil aplicación."
   },
    {
@@ -108,7 +108,7 @@
     "name": "Limpiador de Maquillaje",
     "price": "24.000 Gs",
     "stock": 5,
-    "image": "img/limpiador.jpg",
+    "image": "img/limpiador1.jpg",
     "description": "Desmaquillante en Agua."
   },
    {
@@ -124,7 +124,7 @@
     "name": "Pincel de Cejas",
     "price": "18.000 Gs",
     "stock": 2,
-    "image": "img/pincel-para-cejas.jpg",
+    "image": "img/pincel-para-cejas1.jpg",
     "description": "Delineador de cejas ,ideal para definir y rellenar con acabado natural y duradero."
   },
    {
@@ -141,7 +141,7 @@
     "name": "Serum Wokali",
     "price": "35.000 Gs",
     "stock": 2,
-    "image": "img/serum-wokali.jpg",
+    "image": "img/serum-wokali1.jpg",
     "description": "Serum Facial con colágeno,hidrata,ilumina y ayuda a mejorar la firmeza de la piel."
   },
    {
@@ -149,7 +149,7 @@
     "name": "Aceite de Argán",
     "price": "35.000 Gs",
     "stock": 2,
-    "image": "img/kerasse.jpg",
+    "image": "img/kerasse1.jpg",
     "description": "Aporta Brillo,suavidad y controla el frizz."
   },
   {
@@ -165,7 +165,7 @@
     "name": "set de esponjas de maquillaje",
     "price": "12.000 Gs",
     "stock": 2,
-    "image": "img/rubybasse.jpg",
+    "image": "img/rubybasse1.jpg",
     "description": "Ideales para difuminar y lograr un acabado uniforme."
   },
   {
@@ -173,7 +173,7 @@
     "name": "Brochas",
     "price": "14.000 Gs",
     "stock": 2,
-    "image": "img/brochaspabibrow.jpg",
+    "image": "img/brochaspabibrowv1.jpg",
     "description": "Set de brochas, todo en 1."
   },
   {
@@ -181,7 +181,7 @@
     "name": "Rimel Colossal",
     "price": "15.000 Gs",
     "stock": 2,
-    "image": "img/rimelcolossal.jpg",
+    "image": "img/rimelcolossal1.jpg",
     "description": "Máscara de pestañas efecto volumen."
   },
   {
@@ -189,7 +189,7 @@
     "name": "Vincha + Muñequera ",
     "price": "28.000 Gs",
     "stock": 2,
-    "image": "img/binchas.jpg",
+    "image": "img/binchas1.jpg",
     "description": "Set de vincha y muñequera para tu rutina de skincare."
   },
   {
@@ -197,7 +197,7 @@
     "name": "Vinchitas",
     "price": "12.000 Gs",
     "stock": 2,
-    "image": "img/binchitas.jpg",
+    "image": "img/binchitas1.jpg",
     "description": "Vinchas en colores ."
   },
   {
@@ -205,7 +205,7 @@
     "name": "Serum",
     "price": "35.000 Gs",
     "stock": 2,
-    "image": "img/serum.jpg",
+    "image": "img/serum1.jpg",
     "description": "Serum Facial ,ilumina y ayuda a reducir lineas de expresión."
   },
   {
@@ -213,7 +213,7 @@
     "name": "Delineador",
     "price": "15.000 Gs",
     "stock": 6,
-    "image": "img/rimel.jpg",
+    "image": "img/rimel1.jpg",
     "description": "Color intenso y larga duración."
   }
   
